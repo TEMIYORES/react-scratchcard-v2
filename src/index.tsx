@@ -22,6 +22,7 @@ interface Props {
   width: number;
   height: number;
   image: any;
+  color: string;
   onScratch?: () => void;
   onStopScratch?: () => void;
   finishPercent?: number;
@@ -69,7 +70,8 @@ class Scratch extends Component<Props, State> {
     this.image = new Image();
     this.image.crossOrigin = 'Anonymous';
     this.image.onload = () => {
-      this.ctx.drawImage(this.image, 0, 0, this.props.width, this.props.height);
+      this.ctx.fillStyle = this.props.color;
+      // this.ctx.drawImage(this.image, 0, 0, this.props.width, this.props.height);
       this.setState({ loaded: true });
     };
 
