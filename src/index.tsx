@@ -60,8 +60,11 @@ class Scratch extends Component<Props, State> {
   componentDidMount() {
     this.isDrawing = false;
     this.lastPoint = null;
-    this.ctx = this.canvas.getContext('2d') as CanvasRenderingContext2D;
-
+    this.ctx = this.canvas.getContext('2d', { willReadFrequently: true }) as CanvasRenderingContext2D;
+    this.ctx.imageSmoothingEnabled = true;
+    this.ctx.imageSmoothingQuality = 'high';
+    // Set willReadFrequently to true to indicate frequent readbacks
+    // Your rendering and getImageData operations here
     this.image = new Image();
     this.image.crossOrigin = 'Anonymous';
     this.image.onload = () => {
